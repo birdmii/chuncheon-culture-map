@@ -1,13 +1,41 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
+}
+
+model Theme {
+  id       Int        @id @default(autoincrement())
+  title    String     @db.VarChar(30)
+  content  String?    @db.Text
+  mapUrl   String
+  category Category[]
+  place    Place[]
+}
+
+model Category {
+  id      Int     @id @default(autoincrement())
+  name    String  @db.VarChar(30)
+  theme   Theme   @relation(fields: [themeId], references: [id])
+  themeId Int
+  place   Place[]
+}
+
+model Place {
+  id         Int      @id @default(autoincrement())
+  theme      Theme    @relation(fields: [themeId], references: [id])
+  themeId    Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  name       String   @db.VarChar(50)
+  addr       String   @db.VarChar(50)
+  addrAbbr   String   @db.VarChar(30)
+  lat        Float?
+  lng        Float?
+  isShutdown Boolean  @default(false)
 }
