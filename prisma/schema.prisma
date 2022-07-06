@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Theme {
-  id       Int        @id @default(autoincrement())
+  id       Int        @id @unique @default(autoincrement())
   title    String     @db.VarChar(30)
   content  String?    @db.Text
   mapUrl   String
@@ -19,7 +19,7 @@ model Theme {
 }
 
 model Category {
-  id      Int     @id @default(autoincrement())
+  id      Int     @id @unique @default(autoincrement())
   name    String  @db.VarChar(30)
   theme   Theme   @relation(fields: [themeId], references: [id])
   themeId Int
@@ -27,15 +27,21 @@ model Category {
 }
 
 model Place {
-  id         Int      @id @default(autoincrement())
-  theme      Theme    @relation(fields: [themeId], references: [id])
+  id         Int       @id @unique @default(autoincrement())
+  theme      Theme     @relation(fields: [themeId], references: [id])
   themeId    Int
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  name       String   @db.VarChar(50)
-  addr       String   @db.VarChar(50)
-  addrAbbr   String   @db.VarChar(30)
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+  type       PlaceType @default(POINT)
+  name       String    @db.VarChar(50)
+  addr       String    @db.VarChar(50)
+  addrAbbr   String    @db.VarChar(30)
   lat        Float?
   lng        Float?
-  isShutdown Boolean  @default(false)
+  isShutdown Boolean   @default(false)
+}
+
+enum PlaceType {
+  POINT
+  LINE
 }
