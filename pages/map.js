@@ -1,5 +1,7 @@
 const map = () => {
-  return <>Map</>;
-};
+  return (
+    <div>map</div>
+  )
+}
 
-export default map;
+export default map
