@@ -1,7 +1,12 @@
+import Script from "next/script";
+import Map from "@components/Map";
+
 const map = () => {
   return (
-    <div>map</div>
-  )
-}
+    <>
+      <Map />
+    </>
+  );
+};
 
-export default map
+export default map;
