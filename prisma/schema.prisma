@@ -38,6 +38,7 @@ model Place {
   addrAbbr   String    @db.VarChar(30)
   lat        Float?
   lng        Float?
+  placeUrl     String?   @db.VarChar(50)
   isShutdown Boolean   @default(false)
 }
 

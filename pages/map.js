@@ -13,7 +13,7 @@ const map = ({ placeList }) => {
 
 export async function getStaticProps(ctx) {
   try {
-    const placeList = await prisma.place.findFirst({
+    const placeList = await prisma.place.findMany({
       select: {
         theme: true,
         category: true,
@@ -23,6 +23,7 @@ export async function getStaticProps(ctx) {
         addrAbbr: true,
         lat: true,
         lng: true,
+        placeUrl: true,
         isShutdown: true,
       },
     });
