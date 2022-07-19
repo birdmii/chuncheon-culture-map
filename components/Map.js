@@ -4,7 +4,9 @@ import { Box } from "@mui/material";
 const Map = ({ placeList }) => {
   const [kakaoMap, setKakaoMap] = useState(null);
   const [geocoder, setGeocoder] = useState(null);
+  const [bounds, setBounds] = useState(null);
   const [placeListArr, setPlaceListArr] = useState(placeList);
+  const [markerArr, setMarkerArr] = useState([]);
   const windowSize = useWindowSize();
 
   const container = useRef();
@@ -12,12 +14,14 @@ const Map = ({ placeList }) => {
     kakao.maps.load(() => {
       let options = {
         center: new kakao.maps.LatLng(37.8817188, 127.7306207),
-        level: 5,
+        level: 7,
       };
       let map = new kakao.maps.Map(container.current, options);
-      let geocoder = new kakao.maps.services.Geocoder();
+      const geocoder = new kakao.maps.services.Geocoder();
+      const bounds = new kakao.maps.LatLngBounds();
       setKakaoMap(map);
       setGeocoder(geocoder);
+      setBounds(bounds);
     });
   }, [container]);
 
@@ -26,29 +30,8 @@ const Map = ({ placeList }) => {
       return;
     }
 
-    geocoder.addressSearch(placeListArr.addr, (result, status) => {
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        let marker = new kakao.maps.Marker({
-          // 지도 중심좌표에 마커를 생성
-          position: kakaoMap.getCenter(),
-        });
-
-        marker.setMap(null);
-        // 결과값으로 받은 위치를 마커로 표시
-        marker = new kakao.maps.Marker({
-          map: kakaoMap,
-          position: coords,
-        });
-        marker.setMap(kakaoMap);
-        // 지도의 중심을 결과값으로 받은 위치로 이동
-        kakaoMap.setCenter(coords);
-      } else {
-        const coords = new kakao.maps.LatLng(37.8817188, 127.7306207);
-        kakaoMap.setCenter(coords);
-      }
-    });
+    addMarkers(placeListArr);
+    displayMarkers();
   }, [geocoder]);
 
   useEffect(() => {
@@ -77,6 +60,32 @@ const Map = ({ placeList }) => {
       return () => window.removeEventListener("resize", handleResize);
     }, []);
     return windowSize;
+  }
+
+  function addMarkers() {
+    placeListArr.forEach((place) => {
+      if (place.type === "POINT") {
+        // place can be represented as a point
+        geocoder.addressSearch(place.addr, (result, status) => {
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            let marker = new kakao.maps.Marker({
+              map: kakaoMap,
+              position: coords,
+            });
+            // bounds.extend(marker.getPosition());
+            // kakaoMap.setBounds(bounds);
+            setMarkerArr([...markerArr, marker]);
+          }
+        });
+      } else {
+        // place can be represented as a line
+      }
+    });
+  }
+
+  function displayMarkers() {
+    markerArr.forEach((marker) => marker.setMap(kakaoMap));
   }
 
   return (
