@@ -10,6 +10,12 @@
       ],
       "@styles/*": [
         "styles/*"
+      ],
+      "@icons/*": [
+        "components/icons/*"
+      ],
+      "@assets/*": [
+        "public/assets/*"
       ]
     }
   }
