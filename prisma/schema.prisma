@@ -10,12 +10,13 @@ datasource db {
 }
 
 model Theme {
-  id       Int        @id @unique @default(autoincrement())
-  title    String     @db.VarChar(30)
-  content  String?    @db.Text
-  mapUrl   String
-  category Category[]
-  place    Place[]
+  id         Int        @id @unique @default(autoincrement())
+  title      String     @db.VarChar(30)
+  content    String?    @db.Text
+  mapUrl     String
+  uploadedAt String     @db.VarChar(7)        
+  category   Category[]
+  place      Place[]
 }
 
 model Category {
@@ -38,7 +39,7 @@ model Place {
   addrAbbr   String    @db.VarChar(30)
   lat        Float?
   lng        Float?
-  placeUrl     String?   @db.VarChar(50)
+  placeUrl   String?   @db.VarChar(50)
   isShutdown Boolean   @default(false)
 }
 
