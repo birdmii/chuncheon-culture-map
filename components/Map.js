@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
 
-const Map = ({ placeList }) => {
+const Map = ({ type, placeList }) => {
   const [kakaoMap, setKakaoMap] = useState(null);
   const [geocoder, setGeocoder] = useState(null);
   const [bounds, setBounds] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null);
   const [placeListArr, setPlaceListArr] = useState(placeList);
   const [markerArr, setMarkerArr] = useState([]);
   const windowSize = useWindowSize();
@@ -12,16 +13,20 @@ const Map = ({ placeList }) => {
   const container = useRef();
   useEffect(() => {
     kakao.maps.load(() => {
-      let options = {
+      const options = {
         center: new kakao.maps.LatLng(37.8817188, 127.7306207),
         level: 7,
       };
-      let map = new kakao.maps.Map(container.current, options);
-      const geocoder = new kakao.maps.services.Geocoder();
-      const bounds = new kakao.maps.LatLngBounds();
+      const map = new kakao.maps.Map(container.current, options);
+      setSelectedMarker(
+        new kakao.maps.MarkerImage(
+          "/assets/marker_selected.png",
+          new kakao.maps.Size(60, 60)
+        )
+      );
       setKakaoMap(map);
-      setGeocoder(geocoder);
-      setBounds(bounds);
+      setGeocoder(new kakao.maps.services.Geocoder());
+      setBounds(new kakao.maps.LatLngBounds());
     });
   }, [container]);
 
@@ -72,9 +77,17 @@ const Map = ({ placeList }) => {
             let marker = new kakao.maps.Marker({
               map: kakaoMap,
               position: coords,
+              image: new kakao.maps.MarkerImage(
+                "/assets/marker_default.png",
+                new kakao.maps.Size(60, 60)
+              ),
             });
-            // bounds.extend(marker.getPosition());
-            // kakaoMap.setBounds(bounds);
+
+            kakao.maps.event.addListener(marker, "click", () => {
+              marker.setImage(selectedMarker);
+            });
+            bounds.extend(marker.getPosition());
+            kakaoMap.setBounds(bounds);
             setMarkerArr([...markerArr, marker]);
           }
         });

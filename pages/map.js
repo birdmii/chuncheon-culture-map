@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 const map = ({ placeList }) => {
   return (
     <>
-      <Map placeList={placeList} />
+      <Map type={"all"} placeList={placeList} />
     </>
   );
 };
