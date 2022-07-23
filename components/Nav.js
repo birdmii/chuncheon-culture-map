@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Grid, Box, Typography, Container } from "@mui/material";
 import Image from "next/image";
-import Logo from "@assets/Logo.svg";
+import Logo from "@assets/logo.svg";
 
 const Header = ({ pathname }) => {
   return (

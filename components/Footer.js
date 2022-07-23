@@ -4,12 +4,12 @@ const Footer = () => {
   return (
     <Typography
       variant="body2"
-      color="text.secondary"
+      color="primary"
       align="center"
       fontWeight={300}
       sx={{ m: 2 }}
     >
-      {`© ${new Date().getFullYear()} Birdmee`}
+      {`© ${new Date().getFullYear()} Studio Lifeguard`}
     </Typography>
   );
 };
