@@ -7,7 +7,8 @@ const Footer = () => {
       color="primary"
       align="center"
       fontWeight={300}
-      sx={{ m: 2 }}
+      mb={2}
+      mt={8}
     >
       {`© ${new Date().getFullYear()} Studio Lifeguard`}
     </Typography>
