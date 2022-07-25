@@ -1,15 +1,15 @@
 import MainLayout from "@layouts/MainLayout";
 import Link from "next/link";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 const About = () => {
   return (
-    <>
+    <Container>
       <Typography
-        fontSize={22}
+        fontSize={28}
         color="primary"
-        mt={5}
-        sx={{ cursor: "default", whiteSpace: "pre-line" }}
+        mt={8}
+        sx={{ cursor: "default", whiteSpace: "pre-line", wordBreak: "keep-all" }}
       >
         {`춘천 문화 지도는 춘천시 시정소식지 봄내에서 2021년 1월호부터 매월 특정한 주제로 춘천의 이곳저곳을 소개하는 지도입니다.
         낭만이 넘치는 문화 도시 춘천을 문화 지도와 함께 색다르게 즐겨보면 어떨까요?
@@ -18,7 +18,7 @@ const About = () => {
       </Typography>
 
       <Typography
-        fontSize={16}
+        fontSize={18}
         color="primary"
         mt={4}
         sx={{ cursor: "default", whiteSpace: "pre-line" }}
@@ -37,7 +37,7 @@ const About = () => {
           더 나은 ChunCheonCultureMap을 위해서 제안하기 →
         </Link>
       </Typography>
-    </>
+    </Container>
   );
 };
 
