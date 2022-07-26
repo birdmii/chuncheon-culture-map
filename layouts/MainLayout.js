@@ -1,6 +1,6 @@
 import Nav from "@components/Nav";
 import Footer from "@components/Footer";
-import { Box, Container, CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { useRouter } from "next/router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -24,9 +24,7 @@ const MainLayout = ({ children }) => {
         <CssBaseline />
         <Box sx={{ minHeight: "100vh" }}>
           <Nav pathname={asPath} />
-          <Container>
-            <Box py={10}>{children}</Box>
-          </Container>
+          <Box>{children}</Box>
         </Box>
         <Box>
           <Footer />

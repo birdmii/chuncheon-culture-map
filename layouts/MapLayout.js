@@ -22,12 +22,9 @@ const MapLayout = ({ children }) => {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box sx={{ minHeight: "100vh" }}>
+        <Box sx={{ height: "100vh" }}>
           <Nav pathname={asPath} />
           {children}
-        </Box>
-        <Box>
-          <Footer />
         </Box>
       </ThemeProvider>
     </>
