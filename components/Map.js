@@ -103,7 +103,7 @@ const Map = ({ type, placeList }) => {
 
   return (
     <>
-      <Box sx={{ width: "100vw", height: "100vh" }} ref={container}></Box>
+      <Box sx={{ width: "100%", height: "calc(100vh - 73px)" }} ref={container}></Box>
     </>
   );
 };
