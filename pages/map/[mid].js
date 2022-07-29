@@ -1,12 +1,30 @@
 import MapLayout from "@layouts/MapLayout";
+import PlaceList from "@components/PlaceList";
 import Map from "@components/Map";
+import { Grid, Box, Typography, List, ListItem } from "@mui/material";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const Mid = ({ placeList }) => {
   return (
     <div>
-      <Map type={"theme"} placeList={placeList} />
+      <Grid container>
+        <Grid
+          item
+          md={3}
+          sx={{
+            overflowY: "scroll",
+            height: "calc(100vh - 73px)",
+            borderRight: "1px solid",
+            borderRightColor: "primary.main",
+          }}
+        >
+          <PlaceList theme={placeList} />
+        </Grid>
+        <Grid item md={9}>
+          <Map type={"theme"} placeList={placeList.place} />
+        </Grid>
+      </Grid>
     </div>
   );
 };
@@ -36,21 +54,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const placeList = await prisma.place.findMany({
+    const placeList = await prisma.theme.findUnique({
       select: {
-        theme: true,
+        id: true,
+        title: true,
+        content: true,
+        mapUrl: true,
         category: true,
-        type: true,
-        name: true,
-        addr: true,
-        addrAbbr: true,
-        lat: true,
-        lng: true,
-        placeUrl: true,
-        isShutdown: true,
+        place: true,
       },
       where: {
-        themeId: +params.mid,
+        id: +params.mid,
       },
     });
 
