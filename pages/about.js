@@ -1,5 +1,5 @@
-import MainLayout from "@layouts/MainLayout";
 import Link from "next/link";
+import MainLayout from "@layouts/MainLayout";
 import { Container, Typography } from "@mui/material";
 
 const About = () => {
@@ -9,7 +9,11 @@ const About = () => {
         fontSize={28}
         color="primary"
         mt={8}
-        sx={{ cursor: "default", whiteSpace: "pre-line", wordBreak: "keep-all" }}
+        sx={{
+          cursor: "default",
+          whiteSpace: "pre-line",
+          wordBreak: "keep-all",
+        }}
       >
         {`춘천 문화 지도는 춘천시 시정소식지 봄내에서 2021년 1월호부터 매월 특정한 주제로 춘천의 이곳저곳을 소개하는 지도입니다.
         낭만이 넘치는 문화 도시 춘천을 문화 지도와 함께 색다르게 즐겨보면 어떨까요?

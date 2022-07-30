@@ -1,10 +1,9 @@
 import MainLayout from "@layouts/MainLayout";
-import { PrismaClient } from "@prisma/client";
 import MainHeader from "@components/MainHeader";
 import MainContent from "@components/MainContent";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
 export default function Home({ themeList }) {
   return (
     <>

@@ -1,22 +1,8 @@
 import Download from "@components/icons/Download";
 import { Box, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import MuiAccordion from "@mui/material/Accordion";
-import BackArrow from "./icons/BackArrow";
+import BackArrow from "@icons/BackArrow";
 
-const Accordion = styled((props) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  "&:not(:first-of-type)": {
-    borderTop: 0,
-  },
-  "&:before": {
-    display: "none",
-  },
-}));
 const PlaceList = ({ theme }) => {
-  console.log(theme);
   return (
     <Box>
       <Box

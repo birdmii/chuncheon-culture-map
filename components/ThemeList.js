@@ -1,7 +1,3 @@
-import CheckboxBorder from "@components/icons/CheckboxBorder";
-import Download from "@components/icons/Download";
-import CheckboxChecked from "@components/icons/CheckboxChecked";
-import RightTopArrowSm from "@components/icons/RightTopArrowSm";
 import { styled } from "@mui/material/styles";
 import {
   Checkbox,
@@ -11,6 +7,10 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import MuiAccordion from "@mui/material/Accordion";
+import CheckboxBorder from "@icons/CheckboxBorder";
+import Download from "@icons/Download";
+import CheckboxChecked from "@icons/CheckboxChecked";
+import RightTopArrowSm from "@icons/RightTopArrowSm";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />

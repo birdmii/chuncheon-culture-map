@@ -1,3 +1,5 @@
+import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Box,
   Divider,
@@ -9,8 +11,6 @@ import {
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import RightTopArrow from "@icons/RightTopArrow";
-import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
 
 const MainContent = ({ themeList }) => {
   const container = useRef();
@@ -19,7 +19,7 @@ const MainContent = ({ themeList }) => {
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    if(container.current !== undefined) {
+    if (container.current !== undefined) {
       container.current.scrollLeft += deltaY;
     }
   }, [deltaY]);

@@ -1,7 +1,7 @@
 import MapLayout from "@layouts/MapLayout";
 import PlaceList from "@components/PlaceList";
 import Map from "@components/Map";
-import { Grid, Box, Typography, List, ListItem } from "@mui/material";
+import { Grid } from "@mui/material";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();

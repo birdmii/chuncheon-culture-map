@@ -1,6 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
 import ShortDivider from "@icons/ShortDivider";
-import Link from "next/link";
 
 const MainHeader = ({ latestMapUrl }) => {
   return (

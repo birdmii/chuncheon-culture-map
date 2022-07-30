@@ -1,7 +1,6 @@
-import Nav from "@components/Nav";
-import Footer from "@components/Footer";
-import { Box, CssBaseline } from "@mui/material";
 import { useRouter } from "next/router";
+import Nav from "@components/Nav";
+import { Box, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({

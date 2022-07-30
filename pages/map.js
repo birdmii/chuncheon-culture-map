@@ -1,21 +1,12 @@
-import Map from "@components/Map";
 import MapLayout from "@layouts/MapLayout";
+import Map from "@components/Map";
 import ThemeList from "@components/ThemeList";
-import {
-  Checkbox,
-  Grid,
-  Box,
-  Typography,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
-import MuiAccordion from "@mui/material/Accordion";
+import { Grid, Box, Typography } from "@mui/material";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const map = ({ themeList }) => {
-  console.log(themeList);
   return (
     <>
       <Grid container>

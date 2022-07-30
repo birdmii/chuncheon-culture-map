@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Grid, Box, Typography } from "@mui/material";
-import Image from "next/image";
 import Logo from "@assets/logo.svg";
 
 const Header = ({ pathname }) => {
