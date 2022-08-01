@@ -33,13 +33,13 @@ const About = () => {
         제안하고 싶은 점이나 오류는 아래의 양식을 통해 알려주세요.`}
       </Typography>
       <Typography color="primary" mt={3}>
-        <Link
+        <a
           href="https://forms.gle/BJx4Jbuc6YgfNP1V8"
-          passHref={true}
           target="_blank"
+          rel="noreferrer"
         >
           더 나은 ChunCheonCultureMap을 위해서 제안하기 →
-        </Link>
+        </a>
       </Typography>
     </Container>
   );
