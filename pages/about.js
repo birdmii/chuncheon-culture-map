@@ -1,4 +1,3 @@
-import Link from "next/link";
 import MainLayout from "@layouts/MainLayout";
 import { Container, Typography } from "@mui/material";
 
