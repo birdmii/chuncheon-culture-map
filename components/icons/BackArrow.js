@@ -12,9 +12,9 @@ const BackArrow = () => {
       <path
         d="M8 1L1 8M1 8L8 15M1 8H17"
         stroke="#09691E"
-        stroke-width="1.4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
