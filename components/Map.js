@@ -90,8 +90,12 @@ const Map = ({ type, placeList }) => {
               ),
             });
 
-            kakao.maps.event.addListener(marker, "click", () => {
+            kakao.maps.event.addListener(marker, "mouseover", () => {
               marker.setImage(selectedMarkerImg);
+            });
+
+            kakao.maps.event.addListener(marker, "mouseout", () => {
+              marker.setImage(defaultMarkerImg);
             });
             bounds.extend(marker.getPosition());
             kakaoMap.setBounds(bounds);
