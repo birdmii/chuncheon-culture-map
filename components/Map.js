@@ -5,7 +5,8 @@ const Map = ({ type, placeList }) => {
   const [kakaoMap, setKakaoMap] = useState(null);
   const [geocoder, setGeocoder] = useState(null);
   const [bounds, setBounds] = useState(null);
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [defaultMarkerImg, setDefaultMarkerImg] = useState(null);
+  const [selectedMarkerImg, setSelectedMarkerImg] = useState(null);
   const [placeListArr, setPlaceListArr] = useState(placeList);
   const [markerArr, setMarkerArr] = useState([]);
   const windowSize = useWindowSize();
@@ -18,7 +19,13 @@ const Map = ({ type, placeList }) => {
         level: 7,
       };
       const map = new kakao.maps.Map(container.current, options);
-      setSelectedMarker(
+      setDefaultMarkerImg(
+        new kakao.maps.MarkerImage(
+          "/assets/marker_default.png",
+          new kakao.maps.Size(60, 60)
+        )
+      );
+      setSelectedMarkerImg(
         new kakao.maps.MarkerImage(
           "/assets/marker_selected.png",
           new kakao.maps.Size(60, 60)
@@ -84,7 +91,7 @@ const Map = ({ type, placeList }) => {
             });
 
             kakao.maps.event.addListener(marker, "click", () => {
-              marker.setImage(selectedMarker);
+              marker.setImage(selectedMarkerImg);
             });
             bounds.extend(marker.getPosition());
             kakaoMap.setBounds(bounds);
@@ -103,7 +110,10 @@ const Map = ({ type, placeList }) => {
 
   return (
     <>
-      <Box sx={{ width: "100%", height: "calc(100vh - 73px)" }} ref={container}></Box>
+      <Box
+        sx={{ width: "100%", height: "calc(100vh - 73px)" }}
+        ref={container}
+      ></Box>
     </>
   );
 };
