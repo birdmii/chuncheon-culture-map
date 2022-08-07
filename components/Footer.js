@@ -10,7 +10,7 @@ const Footer = () => {
       mb={2}
       mt={8}
     >
-      {`© ${new Date().getFullYear()} Studio Lifeguard`}
+      {`© ${new Date().getFullYear()} Lifeguard.Studio`}
     </Typography>
   );
 };
