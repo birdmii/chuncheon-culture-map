@@ -1,15 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { handlePlaceMarker } from "@slices/markerSlice";
+import { handlePlace } from "@slices/markerSlice";
 
 const PlaceItem = ({ place }) => {
   const dispatch = useDispatch();
   const handleMouseEnter = (e) => {
-    dispatch(handlePlaceMarker(place));
+    dispatch(handlePlace(place));
   };
 
   const handleMouseLeave = (e) => {
-    dispatch(handlePlaceMarker(null));
+    dispatch(handlePlace(null));
   };
 
   return (
