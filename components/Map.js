@@ -26,13 +26,13 @@ const Map = ({ type, placeList }) => {
       setDefaultMarkerImg(
         new kakao.maps.MarkerImage(
           "/assets/marker_default.png",
-          new kakao.maps.Size(60, 60)
+          new kakao.maps.Size(32, 52)
         )
       );
       setSelectedMarkerImg(
         new kakao.maps.MarkerImage(
           "/assets/marker_selected.png",
-          new kakao.maps.Size(60, 60)
+          new kakao.maps.Size(32, 52)
         )
       );
       setKakaoMap(map);
@@ -107,7 +107,7 @@ const Map = ({ type, placeList }) => {
               position: coords,
               image: new kakao.maps.MarkerImage(
                 "/assets/marker_default.png",
-                new kakao.maps.Size(60, 60)
+                new kakao.maps.Size(32, 52)
               ),
             });
 
