@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import { getPlace } from "@slices/markerSlice";
 
 const Map = ({ type, placeList }) => {
   const [kakaoMap, setKakaoMap] = useState(null);
@@ -9,7 +11,9 @@ const Map = ({ type, placeList }) => {
   const [selectedMarkerImg, setSelectedMarkerImg] = useState(null);
   const [placeListArr, setPlaceListArr] = useState(placeList);
   const [markerArr, setMarkerArr] = useState([]);
+  const [prevMarker, setPrevMarker] = useState(null);
   const windowSize = useWindowSize();
+  const hoveredPlace = useSelector(getPlace);
 
   const container = useRef();
   useEffect(() => {
@@ -36,6 +40,23 @@ const Map = ({ type, placeList }) => {
       setBounds(new kakao.maps.LatLngBounds());
     });
   }, [container]);
+
+  useEffect(() => {
+    if (hoveredPlace !== null) {
+      if (prevMarker !== null) {
+        prevMarker.setImage(defaultMarkerImg);
+      }
+      const selectedPlace = markerArr.find(
+        (marker) => marker.id === hoveredPlace.id
+      );
+      selectedPlace.marker.setImage(selectedMarkerImg);
+      setPrevMarker(selectedPlace.marker);
+    } else {
+      if (prevMarker !== null) {
+        prevMarker.setImage(defaultMarkerImg);
+      }
+    }
+  }, [hoveredPlace]);
 
   useEffect(() => {
     if (geocoder === null) {
@@ -99,7 +120,8 @@ const Map = ({ type, placeList }) => {
             });
             bounds.extend(marker.getPosition());
             kakaoMap.setBounds(bounds);
-            setMarkerArr([...markerArr, marker]);
+            const markerObj = { id: place.id, marker };
+            setMarkerArr((prevMarkerArr) => [...prevMarkerArr, markerObj]);
           }
         });
       } else {

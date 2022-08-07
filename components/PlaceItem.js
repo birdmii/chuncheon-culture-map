@@ -1,6 +1,17 @@
 import { Box, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { handlePlaceMarker } from "@slices/markerSlice";
 
 const PlaceItem = ({ place }) => {
+  const dispatch = useDispatch();
+  const handleMouseEnter = (e) => {
+    dispatch(handlePlaceMarker(place));
+  };
+
+  const handleMouseLeave = (e) => {
+    dispatch(handlePlaceMarker(null));
+  };
+
   return (
     <Box
       sx={{
@@ -8,6 +19,8 @@ const PlaceItem = ({ place }) => {
         borderTopColor: "primary.main",
       }}
       p={2}
+      onMouseEnter={(e) => handleMouseEnter(e)}
+      onMouseLeave={(e) => handleMouseLeave(e)}
     >
       <Box>
         <Typography

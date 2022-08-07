@@ -8,14 +8,14 @@ export const markerSlice = createSlice({
   name: "marker",
   initialState,
   reducers: {
-    handleMarker: (state, action) => {
+    handlePlaceMarker: (state, action) => {
       return { ...state, place: action.payload };
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { handleMarker } = markerSlice.actions;
-export const getMarkerPlace = (state) => state.marker.place;
+export const { handlePlaceMarker } = markerSlice.actions;
+export const getPlace = (state) => state.marker.place;
 
 export default markerSlice.reducer;
