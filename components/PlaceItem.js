@@ -3,6 +3,18 @@ import { useDispatch } from "react-redux";
 import { handlePlace } from "@slices/markerSlice";
 
 const PlaceItem = ({ place }) => {
+  const itemStyle = {
+    borderTop: "1px solid",
+    borderTopColor: "primary.main",
+    color: "primary.main",
+    lineHeight: "28px",
+    textDecoration: place.isShutdown ? "line-through" : "none",
+    "&:hover": {
+      backgroundColor: "primary.main",
+      color: "#F9F6ED",
+    },
+  };
+
   const dispatch = useDispatch();
   const handleMouseEnter = (e) => {
     dispatch(handlePlace(place));
@@ -14,30 +26,16 @@ const PlaceItem = ({ place }) => {
 
   return (
     <Box
-      sx={{
-        borderTop: "1px solid",
-        borderTopColor: "primary.main",
-      }}
+      sx={itemStyle}
       p={2}
       onMouseEnter={(e) => handleMouseEnter(e)}
       onMouseLeave={(e) => handleMouseLeave(e)}
     >
       <Box>
-        <Typography
-          color="primary"
-          fontSize="18px"
-          fontWeight={700}
-          sx={{
-            lineHeight: "28px",
-            textDecoration: place.isShutdown ? "line-through" : "none",
-            textDecorationThickness: "2px",
-          }}
-        >
+        <Typography fontSize="18px" fontWeight={700}>
           {place.name}
         </Typography>
-        <Typography color="primary" fontSize="14px">
-          {place.addrAbbr}
-        </Typography>
+        <Typography fontSize="14px">{place.addrAbbr}</Typography>
       </Box>
     </Box>
   );
