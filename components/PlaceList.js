@@ -3,8 +3,12 @@ import PlaceItem from "@components/PlaceItem";
 import Download from "@icons/Download";
 import BackArrow from "@icons/BackArrow";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { getPlace } from "@slices/markerSlice";
 
 const PlaceList = ({ theme }) => {
+  const hoveredPlace = useSelector(getPlace);
+
   return (
     <Box>
       <Box
@@ -48,7 +52,11 @@ const PlaceList = ({ theme }) => {
         </a>
       </Box>
       {theme.place.map((place) => (
-        <PlaceItem key={place.id} place={place} />
+        <PlaceItem
+          key={place.id}
+          place={place}
+          isHovered={ hoveredPlace&&(place.id === hoveredPlace.id)}
+        />
       ))}
     </Box>
   );
