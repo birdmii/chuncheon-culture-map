@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { handlePlace, getPlace } from "@slices/markerSlice";
+import { handlePlace, handleMarker, getPlace } from "@slices/markerSlice";
 
 const Map = ({ type, placeList }) => {
   const dispatch = useDispatch();
@@ -115,11 +115,13 @@ const Map = ({ type, placeList }) => {
             kakao.maps.event.addListener(marker, "mouseover", () => {
               marker.setImage(selectedMarkerImg);
               dispatch(handlePlace(place));
+              dispatch(handleMarker(place));
             });
 
             kakao.maps.event.addListener(marker, "mouseout", () => {
               marker.setImage(defaultMarkerImg);
               dispatch(handlePlace(null));
+              dispatch(handleMarker(null));
             });
             bounds.extend(marker.getPosition());
             kakaoMap.setBounds(bounds);

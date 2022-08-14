@@ -1,8 +1,23 @@
 import { Box, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { handlePlace } from "@slices/markerSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handlePlace,
+  getMarker,
+} from "@slices/markerSlice";
+import { useEffect, useRef } from "react";
 
 const PlaceItem = ({ place, isHovered }) => {
+  const itemRef = useRef();
+  const hoveredPlace = useSelector(getMarker);
+
+  useEffect(() => {
+    if (hoveredPlace !== null) {
+      if (hoveredPlace.id === place.id) {
+        itemRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [hoveredPlace]);
+
   const itemStyle = {
     borderTop: "1px solid",
     borderTopColor: "primary.main",
@@ -26,6 +41,7 @@ const PlaceItem = ({ place, isHovered }) => {
 
   return isHovered ? (
     <Box
+      ref={itemRef}
       sx={itemStyle}
       backgroundColor={"primary.main"}
       color={"#F9F6ED"}
@@ -44,6 +60,7 @@ const PlaceItem = ({ place, isHovered }) => {
     </Box>
   ) : (
     <Box
+      ref={itemRef}
       sx={itemStyle}
       p={2}
       onMouseEnter={(e) => handleMouseEnter(e)}
