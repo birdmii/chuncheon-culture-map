@@ -1,9 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  handlePlace,
-  getMarker,
-} from "@slices/markerSlice";
+import { handlePlace, getMarker } from "@slices/markerSlice";
 import { useEffect, useRef } from "react";
 
 const PlaceItem = ({ place, isHovered }) => {
@@ -23,7 +20,6 @@ const PlaceItem = ({ place, isHovered }) => {
     borderTopColor: "primary.main",
     color: "primary.main",
     lineHeight: "28px",
-    textDecoration: place.isShutdown ? "line-through" : "none",
     "&:hover": {
       backgroundColor: "primary.main",
       color: "#F9F6ED",
@@ -50,7 +46,12 @@ const PlaceItem = ({ place, isHovered }) => {
       onMouseLeave={(e) => handleMouseLeave(e)}
     >
       <Box>
-        <Typography fontSize="18px" fontWeight={700} color={"#F9F6ED"}>
+        <Typography
+          fontSize="18px"
+          fontWeight={700}
+          color={"#F9F6ED"}
+          sx={{ textDecoration: place.isShutdown ? "line-through" : "none" }}
+        >
           {place.name}
         </Typography>
         <Typography fontSize="14px" color={"#F9F6ED"}>
@@ -67,7 +68,11 @@ const PlaceItem = ({ place, isHovered }) => {
       onMouseLeave={(e) => handleMouseLeave(e)}
     >
       <Box>
-        <Typography fontSize="18px" fontWeight={700}>
+        <Typography
+          fontSize="18px"
+          fontWeight={700}
+          sx={{ textDecoration: place.isShutdown ? "line-through" : "none" }}
+        >
           {place.name}
         </Typography>
         <Typography fontSize="14px">{place.addrAbbr}</Typography>
