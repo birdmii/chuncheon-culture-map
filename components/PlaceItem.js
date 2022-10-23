@@ -13,7 +13,7 @@ const PlaceItem = ({ place, isHovered }) => {
         itemRef.current.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [hoveredPlace]);
+  }, [hoveredPlace, place.id]);
 
   const itemStyle = {
     borderTop: "1px solid",

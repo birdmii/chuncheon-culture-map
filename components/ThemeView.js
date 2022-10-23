@@ -2,31 +2,12 @@ import Link from "next/link";
 import { Box, Grid, Typography } from "@mui/material";
 
 const ThemeView = ({ themeList }) => {
-  const bgWhiteitemStyle = {
-    color: "primary.main",
-    lineHeight: "28px",
-    "&:hover": {
-      backgroundColor: "primary.main",
-      color: "#F9F6ED",
-    },
-  };
-
-  const bgGreenitemStyle = {
-    color: "#F9F6ED",
-    lineHeight: "28px",
-    "&:hover": {
-      backgroundColor: "#F9F6ED",
-      color: "primary.main",
-    },
-  };
-
   return (
     <>
       <Grid container>
         {themeList.map((theme, index) => (
-          <Link href="/map/[mid]" as={`/map/${theme.id}`}>
+          <Link href="/map/[mid]" as={`/map/${theme.id}`} key={index}>
             <Grid
-              key={index}
               item
               xs={12}
               md={4}
