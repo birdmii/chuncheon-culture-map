@@ -47,8 +47,8 @@ const Header = ({ pathname }) => {
               textDecorationColor: `#09691E`,
             }}
           >
-            <Link href="/map">
-              <Typography color="primary">지도에서 보기</Typography>
+            <Link href="/list">
+              <Typography color="primary">전체목록보기</Typography>
             </Link>
           </Box>
         </Grid>
