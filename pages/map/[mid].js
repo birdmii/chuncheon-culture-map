@@ -1,12 +1,15 @@
 import MapLayout from "@layouts/MapLayout";
 import PlaceList from "@components/PlaceList";
 import Map from "@components/Map";
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const Mid = ({ placeList }) => {
-  return (
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
+  return matches ? (
     <div>
       <Grid container>
         <Grid
@@ -25,6 +28,11 @@ const Mid = ({ placeList }) => {
           <Map type={"theme"} placeList={placeList.place} />
         </Grid>
       </Grid>
+    </div>
+  ) : (
+    <div>
+      <Map type={"theme"} placeList={placeList.place} />
+      <PlaceList theme={placeList} />
     </div>
   );
 };

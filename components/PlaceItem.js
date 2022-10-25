@@ -1,11 +1,22 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { handlePlace, getMarker } from "@slices/markerSlice";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const PlaceItem = ({ place, category, isHovered }) => {
   const itemRef = useRef();
   const hoveredPlace = useSelector(getMarker);
+  const [categoryName, setCategoryName] = useState(null);
+  const uiTheme = useTheme();
+  const matches = useMediaQuery(uiTheme.breakpoints.up("md"));
+
+  useEffect(() => {
+    if (place.categoryId) {
+      const categoryName = category.filter((v) => v.id === place.categoryId)[0]
+        .name;
+      setCategoryName(categoryName);
+    }
+  }, []);
 
   useEffect(() => {
     if (hoveredPlace !== null) {
@@ -15,16 +26,30 @@ const PlaceItem = ({ place, category, isHovered }) => {
     }
   }, [hoveredPlace, place.id]);
 
-  const itemStyle = {
-    borderTop: "1px solid",
-    borderTopColor: "primary.main",
-    color: "primary.main",
-    lineHeight: "28px",
-    "&:hover": {
-      backgroundColor: "primary.main",
-      color: "#F9F6ED",
-    },
-  };
+  const itemStyle = matches
+    ? {
+        borderTop: "1px solid",
+        borderTopColor: "primary.main",
+        color: "primary.main",
+        lineHeight: "28px",
+        zIndex: "9999",
+        "&:hover": {
+          backgroundColor: "primary.main",
+          color: "#F9F6ED",
+        },
+      }
+    : {
+        border: "1px solid",
+        borderColor: "primary.main",
+        margin: "10px",
+        color: "primary.main",
+        lineHeight: "28px",
+        zIndex: "9999",
+        "&:hover": {
+          backgroundColor: "primary.main",
+          color: "#F9F6ED",
+        },
+      };
 
   const dispatch = useDispatch();
   const handleMouseEnter = (e) => {
@@ -55,19 +80,18 @@ const PlaceItem = ({ place, category, isHovered }) => {
           {place.name}
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          {place.categoryId && (
+          {categoryName && (
             <Typography
               component="span"
               fontSize={13}
-              color={"primary.main"}
-              backgroundColor={"#F9F6ED"}
+              color={"#F9F6ED"}
               sx={{
                 padding: "2px 4px",
                 marginRight: "4px",
                 display: "inline-block",
               }}
             >
-              {category.filter((v) => v.id === place.categoryId)[0].name}
+              {categoryName}
             </Typography>
           )}
           <Typography component="span" fontSize="14px" color={"#F9F6ED"}>
@@ -80,6 +104,7 @@ const PlaceItem = ({ place, category, isHovered }) => {
     <Box
       ref={itemRef}
       sx={itemStyle}
+      backgroundColor={"background.default"}
       p={2}
       onMouseEnter={(e) => handleMouseEnter(e)}
       onMouseLeave={(e) => handleMouseLeave(e)}
@@ -93,7 +118,7 @@ const PlaceItem = ({ place, category, isHovered }) => {
           {place.name}
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          {place.categoryId && (
+          {categoryName && (
             <Typography
               component="span"
               fontSize={13}
@@ -105,7 +130,7 @@ const PlaceItem = ({ place, category, isHovered }) => {
                 display: "inline-block",
               }}
             >
-              {category.filter((v) => v.id === place.categoryId)[0].name}
+              {categoryName}
             </Typography>
           )}
           <Typography component="span" fontSize="14px">
