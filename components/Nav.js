@@ -42,7 +42,7 @@ const Header = ({ pathname }) => {
           <Box
             fontWeight={300}
             sx={{
-              textDecoration: pathname === "/map" ? "underline" : "none",
+              textDecoration: pathname === "/list" ? "underline" : "none",
               textUnderlineOffset: "5px",
               textDecorationColor: `#09691E`,
             }}
