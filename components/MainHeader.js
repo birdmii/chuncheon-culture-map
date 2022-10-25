@@ -9,7 +9,7 @@ const MainHeader = ({ latestMapUrl }) => {
           color="primary"
           fontWeight={700}
           fontSize="60px"
-          sx={{ whiteSpace: "pre-line", lineHeight: "66px" }}
+          sx={{ whiteSpace: "pre-line", lineHeight: "66px", wordBreak: "keep-all" }}
           mb={4}
         >
           {`춘천의 아름답고 
