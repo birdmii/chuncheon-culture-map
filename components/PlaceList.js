@@ -30,7 +30,7 @@ const PlaceList = ({ theme }) => {
         </Typography>
       </Box>
       <Box>
-        <Typography color="primary.main" mx={2}>
+        <Typography color="primary.main" mx={2} my={4}>
           {theme.content}
         </Typography>
         <a href={theme.mapUrl} target="_blank" rel="noreferrer">
@@ -55,7 +55,8 @@ const PlaceList = ({ theme }) => {
         <PlaceItem
           key={place.id}
           place={place}
-          isHovered={ hoveredPlace&&(place.id === hoveredPlace.id)}
+          category={theme.category}
+          isHovered={hoveredPlace && place.id === hoveredPlace.id}
         />
       ))}
     </Box>

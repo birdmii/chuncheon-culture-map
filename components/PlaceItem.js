@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handlePlace, getMarker } from "@slices/markerSlice";
 import { useEffect, useRef } from "react";
 
-const PlaceItem = ({ place, isHovered }) => {
+const PlaceItem = ({ place, category, isHovered }) => {
   const itemRef = useRef();
   const hoveredPlace = useSelector(getMarker);
 
@@ -54,9 +54,26 @@ const PlaceItem = ({ place, isHovered }) => {
         >
           {place.name}
         </Typography>
-        <Typography fontSize="14px" color={"#F9F6ED"}>
-          {place.addrAbbr}
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {place.categoryId && (
+            <Typography
+              component="span"
+              fontSize={13}
+              color={"primary.main"}
+              backgroundColor={"#F9F6ED"}
+              sx={{
+                padding: "2px 4px",
+                marginRight: "4px",
+                display: "inline-block",
+              }}
+            >
+              {category.filter((v) => v.id === place.categoryId)[0].name}
+            </Typography>
+          )}
+          <Typography component="span" fontSize="14px" color={"#F9F6ED"}>
+            {place.addrAbbr}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   ) : (
@@ -75,7 +92,26 @@ const PlaceItem = ({ place, isHovered }) => {
         >
           {place.name}
         </Typography>
-        <Typography fontSize="14px">{place.addrAbbr}</Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {place.categoryId && (
+            <Typography
+              component="span"
+              fontSize={13}
+              backgroundColor={"primary.main"}
+              color={"#F9F6ED"}
+              sx={{
+                padding: "2px 4px",
+                marginRight: "4px",
+                display: "inline-block",
+              }}
+            >
+              {category.filter((v) => v.id === place.categoryId)[0].name}
+            </Typography>
+          )}
+          <Typography component="span" fontSize="14px">
+            {place.addrAbbr}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
