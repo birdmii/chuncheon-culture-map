@@ -53,6 +53,7 @@ const Map = ({ placeList }) => {
 
       if (selectedPlace !== undefined) {
         selectedPlace.marker.setImage(selectedMarkerImg);
+        kakaoMap.panTo(selectedPlace.marker.getPosition());
         setPrevMarker(selectedPlace.marker);
       }
     } else {
