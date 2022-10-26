@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { handlePlace, handleMarker, getPlace } from "@slices/markerSlice";
 
-const Map = ({ type, placeList }) => {
+const Map = ({ placeList }) => {
   const dispatch = useDispatch();
   const [kakaoMap, setKakaoMap] = useState(null);
   const [geocoder, setGeocoder] = useState(null);
@@ -47,11 +47,14 @@ const Map = ({ type, placeList }) => {
       if (prevMarker !== null) {
         prevMarker.setImage(defaultMarkerImg);
       }
-      const selectedPlace = markerArr.find(
+      const selectedPlace = markerArr.filter(
         (marker) => marker.id === hoveredPlace.id
-      );
-      selectedPlace.marker.setImage(selectedMarkerImg);
-      setPrevMarker(selectedPlace.marker);
+      )[0];
+
+      if (selectedPlace !== undefined) {
+        selectedPlace.marker.setImage(selectedMarkerImg);
+        setPrevMarker(selectedPlace.marker);
+      }
     } else {
       if (prevMarker !== null) {
         prevMarker.setImage(defaultMarkerImg);
