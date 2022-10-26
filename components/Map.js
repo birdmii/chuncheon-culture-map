@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { handlePlace, handleMarker, getPlace } from "@slices/markerSlice";
 
@@ -15,6 +15,8 @@ const Map = ({ placeList }) => {
   const [prevMarker, setPrevMarker] = useState(null);
   const windowSize = useWindowSize();
   const hoveredPlace = useSelector(getPlace);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const container = useRef();
   useEffect(() => {
@@ -23,22 +25,26 @@ const Map = ({ placeList }) => {
         center: new kakao.maps.LatLng(37.8817188, 127.7306207),
         level: 7,
       };
-      const map = new kakao.maps.Map(container.current, options);
-      setDefaultMarkerImg(
-        new kakao.maps.MarkerImage(
-          "/assets/marker_default.png",
-          new kakao.maps.Size(32, 52)
-        )
-      );
-      setSelectedMarkerImg(
-        new kakao.maps.MarkerImage(
-          "/assets/marker_selected.png",
-          new kakao.maps.Size(32, 52)
-        )
-      );
-      setKakaoMap(map);
-      setGeocoder(new kakao.maps.services.Geocoder());
-      setBounds(new kakao.maps.LatLngBounds());
+
+      if (container.current !== null) {
+        const map = new kakao.maps.Map(container.current, options);
+
+        setDefaultMarkerImg(
+          new kakao.maps.MarkerImage(
+            "/assets/marker_default.png",
+            new kakao.maps.Size(32, 52)
+          )
+        );
+        setSelectedMarkerImg(
+          new kakao.maps.MarkerImage(
+            "/assets/marker_selected.png",
+            new kakao.maps.Size(32, 52)
+          )
+        );
+        setKakaoMap(map);
+        setGeocoder(new kakao.maps.services.Geocoder());
+        setBounds(new kakao.maps.LatLngBounds());
+      }
     });
   }, [container]);
 
@@ -53,7 +59,9 @@ const Map = ({ placeList }) => {
 
       if (selectedPlace !== undefined) {
         selectedPlace.marker.setImage(selectedMarkerImg);
-        kakaoMap.panTo(selectedPlace.marker.getPosition());
+        if(!matches) {
+          kakaoMap.panTo(selectedPlace.marker.getPosition());
+        }
         setPrevMarker(selectedPlace.marker);
       }
     } else {
