@@ -32,13 +32,13 @@ const Map = ({ placeList }) => {
         setDefaultMarkerImg(
           new kakao.maps.MarkerImage(
             "/assets/marker_default.png",
-            new kakao.maps.Size(32, 52)
+            new kakao.maps.Size(21, 34)
           )
         );
         setSelectedMarkerImg(
           new kakao.maps.MarkerImage(
             "/assets/marker_selected.png",
-            new kakao.maps.Size(32, 52)
+            new kakao.maps.Size(21, 34)
           )
         );
         setKakaoMap(map);
@@ -52,6 +52,7 @@ const Map = ({ placeList }) => {
     if (hoveredPlace !== null) {
       if (prevMarker !== null) {
         prevMarker.setImage(defaultMarkerImg);
+        prevMarker.setZIndex(1);
       }
       const selectedPlace = markerArr.filter(
         (marker) => marker.id === hoveredPlace.id
@@ -59,6 +60,7 @@ const Map = ({ placeList }) => {
 
       if (selectedPlace !== undefined) {
         selectedPlace.marker.setImage(selectedMarkerImg);
+        selectedPlace.marker.setZIndex(10);
         if(!matches) {
           kakaoMap.panTo(selectedPlace.marker.getPosition());
         }
@@ -67,6 +69,7 @@ const Map = ({ placeList }) => {
     } else {
       if (prevMarker !== null) {
         prevMarker.setImage(defaultMarkerImg);
+        prevMarker.setZIndex(1);
       }
     }
   }, [hoveredPlace]);
@@ -120,7 +123,7 @@ const Map = ({ placeList }) => {
               position: coords,
               image: new kakao.maps.MarkerImage(
                 "/assets/marker_default.png",
-                new kakao.maps.Size(32, 52)
+                new kakao.maps.Size(21, 34)
               ),
             });
 
