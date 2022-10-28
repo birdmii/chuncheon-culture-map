@@ -139,7 +139,7 @@ const Map = ({ placeList }) => {
               dispatch(handleMarker(null));
             });
             bounds.extend(marker.getPosition());
-            kakaoMap.setBounds(bounds);
+            kakaoMap.setBounds(bounds, 10, 10, 32, 10);
             const markerObj = { id: place.id, marker };
             setMarkerArr((prevMarkerArr) => [...prevMarkerArr, markerObj]);
           }
