@@ -1,8 +1,6 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import PlaceItem from "@components/PlaceItem";
 import Download from "@icons/Download";
-import BackArrow from "@icons/BackArrow";
-import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getPlace } from "@slices/markerSlice";
 
@@ -23,11 +21,6 @@ const PlaceList = ({ theme }) => {
           borderBottomColor: "primary.main",
         }}
       >
-        <Link href="/">
-          <Box sx={{ position: "absolute", left: 12, top: 20 }}>
-            <BackArrow />
-          </Box>
-        </Link>
         <Typography fontSize="18px" fontWeight={700} color="primary">
           #{theme.id} {theme.title}
         </Typography>
