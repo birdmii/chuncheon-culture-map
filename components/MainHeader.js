@@ -1,15 +1,28 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import ShortDivider from "@icons/ShortDivider";
 
 const MainHeader = ({ latestMapUrl }) => {
+  const uiTheme = useTheme();
+  const matches = useMediaQuery(uiTheme.breakpoints.up("md"));
+
   return (
     <Container>
       <Box color="primary" m={2} mt={7}>
         <Typography
           color="primary"
           fontWeight={700}
-          fontSize="60px"
-          sx={{ whiteSpace: "pre-line", lineHeight: "66px", wordBreak: "keep-all" }}
+          fontSize={matches ? "60px" : "42px"}
+          sx={{
+            whiteSpace: "pre-line",
+            lineHeight: matches ? "66px" : "48px",
+            wordBreak: "keep-all",
+          }}
           mb={4}
         >
           {`춘천의 아름답고 
