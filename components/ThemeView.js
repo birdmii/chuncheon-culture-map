@@ -1,7 +1,10 @@
 import Link from "next/link";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 const ThemeView = ({ themeList }) => {
+  const uiTheme = useTheme();
+  const matches = useMediaQuery(uiTheme.breakpoints.up("md"));
+
   return (
     <>
       <Grid container>
@@ -16,7 +19,7 @@ const ThemeView = ({ themeList }) => {
               sx={{
                 height: "300px",
                 borderBottom: "1px solid",
-                borderRight: "1px solid",
+                borderRight: matches ? "1px solid" : 'none',
                 borderLeft: 0,
                 borderBottomColor: "primary.main",
                 backgroundColor: "#F9F6ED",
