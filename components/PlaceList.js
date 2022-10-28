@@ -67,11 +67,13 @@ const PlaceList = ({ theme }) => {
     <Box
       sx={{
         position: "absolute",
-        height: "300px",
-        bottom: "30px",
+        bottom: "15px",
         right: "10px",
         left: "10px",
         display: "grid",
+        gridAutoFlow: "column",
+        gridAutoColumns: "minmax(95vw,1fr)",
+        gridGap: "8px",
         overflowX: "scroll",
       }}
     >

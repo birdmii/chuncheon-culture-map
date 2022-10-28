@@ -41,7 +41,8 @@ const PlaceItem = ({ place, category, isHovered }) => {
     : {
         border: "1px solid",
         borderColor: "primary.main",
-        margin: "10px",
+        marginTop: "auto",
+        height: "fit-content",
         color: "primary.main",
         lineHeight: "28px",
         zIndex: "9999",
@@ -75,7 +76,10 @@ const PlaceItem = ({ place, category, isHovered }) => {
           fontSize="18px"
           fontWeight={700}
           color={"#F9F6ED"}
-          sx={{ textDecoration: place.isShutdown ? "line-through" : "none" }}
+          sx={{
+            textDecoration: place.isShutdown ? "line-through" : "none",
+            marginBottom: "8px",
+          }}
         >
           {place.name}
         </Typography>
@@ -89,6 +93,8 @@ const PlaceItem = ({ place, category, isHovered }) => {
                 padding: "2px 4px",
                 marginRight: "4px",
                 display: "inline-block",
+                backgroundColor: "background.default",
+                color: "primary.main",
               }}
             >
               {categoryName}
@@ -113,7 +119,10 @@ const PlaceItem = ({ place, category, isHovered }) => {
         <Typography
           fontSize="18px"
           fontWeight={700}
-          sx={{ textDecoration: place.isShutdown ? "line-through" : "none" }}
+          sx={{
+            textDecoration: place.isShutdown ? "line-through" : "none",
+            marginBottom: "8px",
+          }}
         >
           {place.name}
         </Typography>
