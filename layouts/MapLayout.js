@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Nav from "@components/Nav";
 import { Box, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Meta from "@components/Meta";
 
 const theme = createTheme({
   palette: {
@@ -19,6 +20,7 @@ const MapLayout = ({ children }) => {
 
   return (
     <>
+      <Meta />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Box sx={{ height: "100vh" }}>

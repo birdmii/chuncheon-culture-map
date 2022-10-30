@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Nav from "@components/Nav";
+import Meta from "@components/Meta";
 import Footer from "@components/Footer";
 import { Box, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -20,6 +21,7 @@ const MainLayout = ({ children }) => {
 
   return (
     <>
+      <Meta />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Box sx={{ minHeight: "100vh" }}>
