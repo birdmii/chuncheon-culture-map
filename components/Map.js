@@ -54,18 +54,21 @@ const Map = ({ placeList }) => {
         prevMarker.setImage(defaultMarkerImg);
         prevMarker.setZIndex(1);
       }
-      const selectedPlace = markerArr.filter(
-        (marker) => marker.id === hoveredPlace.id
-      )[0];
-
-      if (selectedPlace !== undefined) {
-        selectedPlace.marker.setImage(selectedMarkerImg);
-        selectedPlace.marker.setZIndex(10);
-        if(!matches) {
-          kakaoMap.panTo(selectedPlace.marker.getPosition());
+      markerArr.forEach((marker) => {
+        if (marker.id !== hoveredPlace.id) {
+          marker.marker.setImage(defaultMarkerImg);
+          marker.marker.setZIndex(1);
+        } else {
+          if (marker !== undefined) {
+            marker.marker.setImage(selectedMarkerImg);
+            marker.marker.setZIndex(10);
+            if (!matches) {
+              kakaoMap.panTo(marker.marker.getPosition());
+            }
+            setPrevMarker(marker.marker);
+          }
         }
-        setPrevMarker(selectedPlace.marker);
-      }
+      });
     } else {
       if (prevMarker !== null) {
         prevMarker.setImage(defaultMarkerImg);
