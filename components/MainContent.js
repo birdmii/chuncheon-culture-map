@@ -54,7 +54,13 @@ const MainContent = ({ themeList }) => {
           }}
         >
           <Link href="/map/[mid]" as={`/map/${theme.id}`}>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                cursor: "pointer",
+              }}
+            >
               <Box>
                 <Typography fontSize={36} fontWeight={700} color="primary">
                   #{theme.id}
@@ -63,12 +69,16 @@ const MainContent = ({ themeList }) => {
                   fontSize={36}
                   fontWeight={700}
                   color="primary"
-                  sx={{ lineHeight: "44px", wordBreak: "keep-all" }}
+                  sx={{
+                    lineHeight: "44px",
+                    wordBreak: "keep-all",
+                    cursor: "pointer",
+                  }}
                 >
                   {theme.title}
                 </Typography>
               </Box>
-              <Box>
+              <Box sx={{ cursor: "pointer" }}>
                 <RightTopArrow />
               </Box>
             </Box>

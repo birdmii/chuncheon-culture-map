@@ -16,6 +16,10 @@ a {
   box-sizing: border-box;
 }
 
-p {
+p, span {
   cursor: default;
+}
+
+#logo_img {
+  cursor: pointer;
 }

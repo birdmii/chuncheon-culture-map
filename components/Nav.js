@@ -17,8 +17,13 @@ const Header = ({ pathname }) => {
     >
       <Grid item md={10} sm={9} xs={7}>
         <Link href={"/"} forwardRef>
-          <Box fontSize={20} fontWeight={300} sx={{ display: "flex" }}>
+          <Box
+            fontSize={20}
+            fontWeight={300}
+            sx={{ display: "flex" }}
+          >
             <Image
+              id="logo_img"
               src={Logo}
               alt="Logo image of Chuncheon Culture Map"
               priority
@@ -40,7 +45,9 @@ const Header = ({ pathname }) => {
             }}
           >
             <Link href="/about">
-              <Typography color="primary">소개</Typography>
+              <Typography color="primary" sx={{ cursor: "pointer" }}>
+                소개
+              </Typography>
             </Link>
           </Box>
           <Box
@@ -52,7 +59,9 @@ const Header = ({ pathname }) => {
             }}
           >
             <Link href="/list">
-              <Typography color="primary">전체목록보기</Typography>
+              <Typography color="primary" sx={{ cursor: "pointer" }}>
+                전체목록보기
+              </Typography>
             </Link>
           </Box>
         </Grid>

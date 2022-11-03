@@ -19,7 +19,7 @@ const ThemeView = ({ themeList }) => {
               sx={{
                 height: "300px",
                 borderBottom: "1px solid",
-                borderRight: matches ? "1px solid" : 'none',
+                borderRight: matches ? "1px solid" : "none",
                 borderLeft: 0,
                 borderBottomColor: "primary.main",
                 backgroundColor: "#F9F6ED",
@@ -41,23 +41,27 @@ const ThemeView = ({ themeList }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <>
-                    <Box
-                      fontSize={36}
-                      sx={{
-                        textAlign: "right",
-                        fontWeight: "700",
-                      }}
-                    >
-                      #{theme.id}
-                    </Box>
-                    <Typography
-                      fontSize={32}
-                      sx={{ fontWeight: "700", wordBreak: "keep-all" }}
-                    >
-                      {theme.title}
-                    </Typography>
-                  </>
+                  <Typography
+                    fontSize={36}
+                    sx={{
+                      textAlign: "right",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                    }}
+                  >
+                    #{theme.id}
+                  </Typography>
+                  <Typography
+                    fontSize={32}
+                    sx={{
+                      fontWeight: "700",
+                      wordBreak: "keep-all",
+                      cursor: "pointer",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {theme.title}
+                  </Typography>
                 </Box>
               )}
 
@@ -70,20 +74,26 @@ const ThemeView = ({ themeList }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <>
-                    <Typography
-                      fontSize={36}
-                      sx={{ textAlign: "right", fontWeight: "700" }}
-                    >
-                      #{theme.id}
-                    </Typography>
-                    <Typography
-                      fontSize={32}
-                      sx={{ fontWeight: "700", wordBreak: "keep-all" }}
-                    >
-                      {theme.title}
-                    </Typography>
-                  </>
+                  <Typography
+                    fontSize={36}
+                    sx={{
+                      textAlign: "right",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                    }}
+                  >
+                    #{theme.id}
+                  </Typography>
+                  <Typography
+                    fontSize={32}
+                    sx={{
+                      fontWeight: "700",
+                      wordBreak: "keep-all",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {theme.title}
+                  </Typography>
                 </Box>
               )}
 
@@ -96,21 +106,23 @@ const ThemeView = ({ themeList }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <>
-                    <Typography fontSize={36} sx={{ fontWeight: "700" }}>
-                      #{theme.id}
-                    </Typography>
-                    <Typography
-                      fontSize={32}
-                      sx={{
-                        textAlign: "right",
-                        fontWeight: "700",
-                        wordBreak: "keep-all",
-                      }}
-                    >
-                      {theme.title}
-                    </Typography>
-                  </>
+                  <Typography
+                    fontSize={36}
+                    sx={{ fontWeight: "700", cursor: "pointer" }}
+                  >
+                    #{theme.id}
+                  </Typography>
+                  <Typography
+                    fontSize={32}
+                    sx={{
+                      textAlign: "right",
+                      fontWeight: "700",
+                      wordBreak: "keep-all",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {theme.title}
+                  </Typography>
                 </Box>
               )}
 
@@ -123,21 +135,23 @@ const ThemeView = ({ themeList }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <>
-                    <Typography fontSize={36} sx={{ fontWeight: "700" }}>
-                      #{theme.id}
-                    </Typography>
-                    <Typography
-                      fontSize={32}
-                      sx={{
-                        textAlign: "right",
-                        fontWeight: "700",
-                        wordBreak: "keep-all",
-                      }}
-                    >
-                      {theme.title}
-                    </Typography>
-                  </>
+                  <Typography
+                    fontSize={36}
+                    sx={{ fontWeight: "700", cursor: "pointer" }}
+                  >
+                    #{theme.id}
+                  </Typography>
+                  <Typography
+                    fontSize={32}
+                    sx={{
+                      textAlign: "right",
+                      fontWeight: "700",
+                      wordBreak: "keep-all",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {theme.title}
+                  </Typography>
                 </Box>
               )}
             </Grid>
