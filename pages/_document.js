@@ -1,24 +1,10 @@
 import { Html, Main, Head, NextScript } from "next/document";
-
 import Script from "next/script";
 
 export default function Document() {
   return (
     <Html lang="ko">
       <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-YLDGH08GD2"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', 'G-YLDGH08GD2');`,
-          }}
-        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="stylesheet"
@@ -34,6 +20,18 @@ export default function Document() {
         />
       </Head>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YLDGH08GD2"
+          strategy="afterInteractive"
+        ></Script>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-YLDGH08GD2');
+          `}
+        </Script>
         <Main />
         <NextScript />
       </body>
