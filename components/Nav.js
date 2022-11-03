@@ -18,7 +18,11 @@ const Header = ({ pathname }) => {
       <Grid item md={10} sm={9} xs={7}>
         <Link href={"/"} forwardRef>
           <Box fontSize={20} fontWeight={300} sx={{ display: "flex" }}>
-            <Image src={Logo} />
+            <Image
+              src={Logo}
+              alt="Logo image of Chuncheon Culture Map"
+              priority
+            />
           </Box>
         </Link>
       </Grid>
